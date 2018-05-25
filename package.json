@@ -2,7 +2,7 @@
   "name": "changekit",
   "author": "Jordan Osterberg",
   "description": "A simple toolkit that integrates with your iOS and Android apps, along with your server, to make data usage efficient.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": false,
   "main": "index.js",
   "dependencies": {
