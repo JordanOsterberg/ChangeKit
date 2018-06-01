@@ -1,4 +1,4 @@
-# ChangeKit  ![version](https://img.shields.io/badge/version-1.0.8-red.svg)
+# ChangeKit  ![version](https://img.shields.io/badge/version-1.0.9-red.svg)
  ChangeKit is a simple framework that integrates with your iOS and Android apps, along with your server, to make data usage efficient.
  
  **ChangeKit is a work in progress tool, and should not be deployed in production until specified in this README.**
@@ -10,11 +10,17 @@ const changekit = require("changekit")({
 });
 ```
 
-From here, whenever a data request is made, ChangeKit should be queried to see if the client's cached data is outdated. Using `express` would look like this:
+The configuration object can use these properties:
+    * mysqlDatabase - The MySQL database that holds ChangeKit's data
+    * useExpress - Whether or not ChangeKit should use the `express` library for requests 
+
+## Express Example
+
+Whenever a data request is made, ChangeKit should be queried to see if the client's cached data is outdated. Using `express` integration would look like this:
 ```javascript
 // Listen for localhost:3000/home/v1/get
 app.get("/home/v1/get", function(req, res) {
-    // If you have a resource that is frequently accessed, consider caching it
+    // Generally speaking, saving the stub in a variable that can be accessed later and in future subsequent requests is a good idea
     changekit.stubForResource("home").then((stub) => {
         // If there is no update required, inform the client 
         if (!changekit.shouldUpdate(req, stub)) {
@@ -28,8 +34,29 @@ app.get("/home/v1/get", function(req, res) {
 });
 ```  
 
-If you aren't using `express`, there will be an alternative method for you to call soon.
+## Other Example
 
-Again, this is a work in progress tool, and it should not be deployed to production until specified in this README. Check back soon for updates.
+If you aren't using express or need to use ChangeKit for more general purpose uses, the flow is very similar.
+```javascript
+
+let homeStub;
+
+// Load the home stub and save it in the homeStub variable
+
+changekit.stubForResource("home").then((stub) => {
+    homeStub = stub; 
+});
+
+// ...
+// Some time later, when ChangeKit needs to be queried 
+
+if (!changekit.shouldUpdate(clientStubValue, homeStub)) {
+    // Inform your client that no update is required
+    return
+}
+
+```  
+
+To reiterate, this is a work in progress tool, and it should not be deployed to production until specified in this README. Check back soon for updates.
 
 Copyright © 2018 Jordan Osterberg. All rights reserved. Licensed under the MIT license.
