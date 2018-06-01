@@ -1,7 +1,5 @@
-# ChangeKit
+# ChangeKit  ![version](https://img.shields.io/badge/version-1.0.8-red.svg)
  ChangeKit is a simple framework that integrates with your iOS and Android apps, along with your server, to make data usage efficient.
- 
- ![version](https://img.shields.io/badge/version-1.0.8-red.svg)
  
  **ChangeKit is a work in progress tool, and should not be deployed in production until specified in this README.**
  
