@@ -11,8 +11,8 @@ const changekit = require("changekit")({
 ```
 
 The configuration object can use these properties:
-    * mysqlDatabase - The MySQL database that holds ChangeKit's data
-    * useExpress - Whether or not ChangeKit should use the `express` library for requests 
+* mysqlDatabase - The MySQL database that holds ChangeKit's data
+* useExpress - Whether or not ChangeKit should use the `express` library for requests 
 
 ## Express Example
 
